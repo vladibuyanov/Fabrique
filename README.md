@@ -24,7 +24,7 @@ source\venv\bin\activate
 
 ### Склонировать репозиторий с GitLab
 ```shell
-git clone https://gitlab.com/
+git clone https://gitlab.com/vladibuyanov/Fabrique
 ```
 
 ### Установка зависимостей:
