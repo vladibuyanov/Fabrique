@@ -6,13 +6,16 @@ from core.models import MailingList
 
 
 def today_messages():
+    """ Формирование списка сообщений """
+    today = datetime.date.today()
     messages_to_sent = MailingList.objects.all()
     today_message = list()
     for message_to_sent in messages_to_sent:
         time_to_sent = message_to_sent.date_of_mailing.timetuple()
         message_day = datetime.date(time_to_sent[0], time_to_sent[1], time_to_sent[2])
-        today = datetime.date.today()
-        if message_day == today:
+        time_to_stop = message_to_sent.date_of_end_mailing.timetuple()
+        stop_message_day = datetime.date(time_to_stop[0], time_to_stop[1], time_to_stop[2])
+        if message_day <= today < stop_message_day:
             today_message.append(message_to_sent)
     return today_message
 
