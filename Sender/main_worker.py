@@ -28,11 +28,13 @@ def zeromin(minutes):
 
 def main():
     while True:
-        messages_to_sent = schedule.every().day.at('00:00').do(today_messages())
+        messages_to_sent = today_messages()
         for message_to_sent in messages_to_sent:
             time_to_sent = message_to_sent.date_of_mailing.timetuple()
             message_hours = f'{time_to_sent[3]}:{zeromin(time_to_sent[4])}'
-            schedule.every().day.at(message_hours).do(forming_and_sending_messages())
+            schedule.every().day.at(message_hours).do(
+                forming_and_sending_messages, message_to_sent=message_to_sent
+            )
             schedule.clear()
 
 
