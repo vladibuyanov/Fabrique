@@ -5,6 +5,12 @@ from forming_and_sending_messages import forming_and_sending_messages
 from core.models import MailingList
 
 
+def zeromin(minutes):
+    if minutes < 10:
+        return f'0{minutes}'
+    return str(minutes)
+
+
 def today_messages():
     """ Формирование списка сообщений """
     today = datetime.date.today()
@@ -18,12 +24,6 @@ def today_messages():
         if message_day <= today < stop_message_day:
             today_message.append(message_to_sent)
     return today_message
-
-
-def zeromin(minutes):
-    if minutes < 10:
-        return f'0{minutes}'
-    return str(minutes)
 
 
 def main():
