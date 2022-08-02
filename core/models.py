@@ -19,7 +19,7 @@ class MailingList(models.Model):
         (TAG, 'Тэг')
     ]
 
-    date_of_mailing = models.DateField(
+    date_of_mailing = models.DateTimeField(
         null=False,
         verbose_name='дата и время запуска рассылки'
     )
@@ -36,12 +36,12 @@ class MailingList(models.Model):
         max_length=8,
         verbose_name='Значение выбранного свойства клиента'
     )
-    date_of_end_mailing = models.DateField(
+    date_of_end_mailing = models.DateTimeField(
         null=False, verbose_name='дата и время окончания рассылки'
     )
 
     def __str__(self):
-        return f'{self.id}//{self.date_of_mailing}'
+        return f'{self.id} // {self.date_of_mailing}'
 
 
 class Client(models.Model):
